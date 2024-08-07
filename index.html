@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Hospital CMMS Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        .login-container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .login-container .form-group {
+            text-align: left;
+        }
+        .alert {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <img src="logo.png" alt="Sunshine Hospital Logo">
+        <h1>Sunshine Hospital CMMS</h1>
+        <div class="alert alert-danger" role="alert" id="error-message">
+            Incorrect username or password.
+        </div>
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (password !== '12345') {
+                document.getElementById('error-message').innerText = 'Incorrect password.';
+                document.getElementById('error-message').style.display = 'block';
+            } else {
+                switch(username) {
+                    case 'Maintenance Officer':
+                        window.location.href = 'maintenance_officer/dashboard.html';
+                        break;
+                    case 'Technician':
+                        window.location.href = 'technician/dashboard.html';
+                        break;
+                    case 'Machine Department':
+                        window.location.href = 'machine_department/dashboard.html';
+                        break;
+                    case 'Inventory Officer':
+                        window.location.href = 'inventory_officer/dashboard.html';
+                        break;
+                    default:
+                        document.getElementById('error-message').innerText = 'Incorrect username.';
+                        document.getElementById('error-message').style.display = 'block';
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
